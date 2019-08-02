@@ -6,7 +6,7 @@ import android.os.Bundle;
 import com.cespaul.testjob.R
 
 
-class SplashScreenActivity : AppCompatActivity() {
+class SplashScreen : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
