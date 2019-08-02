@@ -1,8 +1,9 @@
-package com.cespaul.testjob
+package com.cespaul.testjob.components.ui
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import com.cespaul.testjob.R
 
 
 class SplashScreenActivity : AppCompatActivity() {
@@ -12,7 +13,7 @@ class SplashScreenActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash_screen)
         val intent = Intent(
             applicationContext,
-            MainActivity::class.java
+            MainScreen::class.java
         )
         startActivity(intent)
         finish()
