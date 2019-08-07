@@ -20,7 +20,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+        maven { url "https://mvn.arello-mobile.com/" }
     }
 }
 
