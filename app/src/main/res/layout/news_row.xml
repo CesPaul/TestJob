@@ -23,15 +23,16 @@
             <TextView android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:layout_marginStart="8dp"
-                      android:id="@+id/lblNewsTitle" android:textStyle="bold"/>
+                      android:id="@+id/lblNewsTitle" android:textStyle="bold" android:text="Title"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/lblNewsDescription" android:layout_weight="1"
-                    android:layout_marginLeft="8dp"/>
+                    android:layout_marginLeft="8dp" android:text="Description"/>
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/lblNewsDate" android:layout_marginLeft="8dp"
-                    android:layout_gravity="right" android:foregroundGravity="right" android:gravity="right"/>
+                    android:layout_gravity="right" android:foregroundGravity="right" android:gravity="right"
+                    android:text="Date"/>
         </LinearLayout>
     </LinearLayout>
 
