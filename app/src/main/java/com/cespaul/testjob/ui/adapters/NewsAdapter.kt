@@ -1,54 +1,35 @@
 package com.cespaul.testjob.ui.adapters
 
-import android.content.Context
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import com.cespaul.testjob.R
 import com.cespaul.testjob.mvp.models.NewsDTO
-import com.cespaul.testjob.mvp.models.NewsList
-import com.cespaul.testjob.ui.activities.MainScreen
-import kotlinx.android.synthetic.main.activity_main_screen.*
+import kotlinx.android.synthetic.main.news_row.view.*
 
 
-class NewsAdapter{
+class NewsAdapter(private val news: MutableList<NewsDTO>) : RecyclerView.Adapter<NewsAdapter.ViewHolder>(){
 
-    private lateinit var newsList: List<NewsList>
-    private lateinit var context: Context
-
-    constructor(newsList: List<NewsList>, context: Context) {
-        this.newsList = newsList
-        this.context = context
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.news_row, parent, false)
+        return ViewHolder(view)
     }
 
-    /*override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun getItemCount() = news.size
 
-        var view = LayoutInflater.from(parent.context).inflate(itemLayout, parent, false)
-        return NewsViewHolder(view)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.newsTitle.text = news[position].newsTitle
+        holder.nwwsDescription.text = news[position].newsDecription
+        holder.newsDate.text = news[position].newsPublishDate
     }
 
-    override fun getItemCount(): Int {
-        return newsTemp.size
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val newsTitle = view.lblNewsTitle
+        val nwwsDescription = view.lblNewsDescription
+        val newsDate = view.lblNewsDate
     }
 
-    override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
-        var news: NewsDTO = newsTemp.get(position)
-        holder.updateNews(news)
 
-        val newsList = NewsList.get(position)
-    }*/
-
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        lateinit var title: TextView
-
-
-        fun ViewHolder(itemView: View){
-            title = itemView.findViewById<View>(R.id.lblNewsTitle) as TextView
-        }
-    }
 }
 
