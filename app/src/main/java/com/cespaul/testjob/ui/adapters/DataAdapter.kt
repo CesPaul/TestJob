@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.cespaul.testjob.R
-import com.cespaul.testjob.mvp.models.DataModel
+import com.cespaul.testjob.Model.News
 
 
-class DataAdapter(private var dataList: List<DataModel>, private val context: Context) : RecyclerView.Adapter<DataAdapter.ViewHolder>(){
+class DataAdapter(private var dataList: List<News>, private val context: Context) : RecyclerView.Adapter<DataAdapter.ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(context).inflate(R.layout.news_row, parent, false))
@@ -27,11 +27,7 @@ class DataAdapter(private var dataList: List<DataModel>, private val context: Co
     }
 
     class ViewHolder(itemLayoutView: View) : RecyclerView.ViewHolder(itemLayoutView) {
-        lateinit var titleTextView: TextView
-        init {
-            titleTextView = itemLayoutView.findViewById(R.id.lblNewsTitle)
-
-        }
+        var titleTextView: TextView = itemLayoutView.findViewById(R.id.lblNewsTitle)
     }
 
 

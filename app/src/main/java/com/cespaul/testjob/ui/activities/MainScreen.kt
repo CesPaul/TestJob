@@ -2,54 +2,43 @@ package com.cespaul.testjob.ui.activities
 
 import android.app.ProgressDialog
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import com.arellomobile.mvp.MvpActivity
+import android.widget.Toast
 import com.cespaul.testjob.R
-import com.cespaul.testjob.mvp.models.Retrofit.ApiClient
-import com.cespaul.testjob.mvp.models.DataModel
-import com.cespaul.testjob.mvp.views.MainView
+import com.cespaul.testjob.Model.News
+import com.cespaul.testjob.View.MainContractView
 import com.cespaul.testjob.ui.adapters.DataAdapter
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import es.dmoral.toasty.Toasty
+import kotlinx.android.synthetic.main.activity_main_screen.*
 
-class MainScreen : MvpActivity(), MainView {
+class MainScreen : AppCompatActivity() , MainContractView {
+
+    lateinit var progressDialog: ProgressDialog
+    var dataList = ArrayList<News>()
 
 
-    lateinit var progerssProgressDialog: ProgressDialog
-    var dataList = ArrayList<DataModel>()
-    lateinit var recyclerView: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_screen)
 
-        recyclerView = findViewById(R.id.recyclerView)
-
         recyclerView.adapter = DataAdapter(dataList,this)
-        recyclerView.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
+        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
 
-        progerssProgressDialog= ProgressDialog(this)
-        progerssProgressDialog.setTitle("Loading")
-        progerssProgressDialog.setCancelable(false)
-        progerssProgressDialog.show()
-        getData()
-
+        showProgress()
     }
-    private fun getData() {
-        val call: Call<List<DataModel>> = ApiClient.getClient.getNews()
-        call.enqueue(object : Callback<List<DataModel>> {
 
-            override fun onResponse(call: Call<List<DataModel>>?, response: Response<List<DataModel>>?) {
-                progerssProgressDialog.dismiss()
-                dataList.addAll(response!!.body()!!)
-                recyclerView.adapter?.notifyDataSetChanged()
-            }
+    override fun showToast(message : String) {
+        Toasty.error(this, message, Toast.LENGTH_SHORT).show()
+    }
 
-            override fun onFailure(call: Call<List<DataModel>>?, t: Throwable?) {
-                progerssProgressDialog.dismiss()
-            }
-
-        })
+    override fun showProgress() {
+        progressDialog = ProgressDialog(this)
+        progressDialog.setTitle("Loading")
+        progressDialog.setCancelable(false)
+        progressDialog.show()
+    }
+    override fun hideProgress() {
+        progressDialog.dismiss()
     }
 }

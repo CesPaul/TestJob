@@ -1,4 +1,4 @@
-package com.cespaul.testjob.mvp.models.Retrofit
+package com.cespaul.testjob.Retrofit
 
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
@@ -11,7 +11,6 @@ object ApiClient {
     var BASE_URL:String="https://jsonplaceholder.typicode.com/"
     val getClient: ApiInterface
         get() {
-
             val gson = GsonBuilder()
                 .setLenient()
                 .create()
