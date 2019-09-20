@@ -1,8 +1,20 @@
 package com.cespaul.testjob.base
 
-import android.view.View
+import com.cespaul.testjob.injection.component.DaggerPresenterInjector
+import com.cespaul.testjob.injection.component.PresenterInjector
+import com.cespaul.testjob.injection.module.ContextModule
+import com.cespaul.testjob.injection.module.NetworkModule
+import com.cespaul.testjob.ui.news.NewsPresenter
 
-abstract class BasePresenter<out v: BaseView>(protected val view : v) {
+abstract class BasePresenter<out V: BaseView>(protected val view : V) {
+
+    private val injector : PresenterInjector = DaggerPresenterInjector
+        .builder()
+        .baseView(view)
+        .contextModule(ContextModule)
+        .networkModule(NetworkModule)
+        .build()
+
     init {
         inject()
     }
@@ -12,6 +24,8 @@ abstract class BasePresenter<out v: BaseView>(protected val view : v) {
     open fun onViewDestroyed(){}
 
     private fun inject(){
-        //TODO: Impl this method
+        when (this){
+            is NewsPresenter -> injector.inject(this)
+        }
     }
 }

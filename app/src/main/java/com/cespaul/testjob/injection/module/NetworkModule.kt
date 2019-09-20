@@ -1,6 +1,7 @@
 package com.cespaul.testjob.injection.module
 
 import com.cespaul.testjob.network.NewsApi
+import com.cespaul.testjob.utils.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
@@ -26,6 +27,7 @@ object NetworkModule {
     @JvmStatic
     internal fun provideRetrofitInterface(): Retrofit {
         return Retrofit.Builder()
+            .baseUrl(BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
             .build()
