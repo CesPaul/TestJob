@@ -33,6 +33,5 @@ class NewsPresenter(newsView: NewsView) : BasePresenter<NewsView>(newsView) {
                 { newsList -> view.updateNews(newsList) },
                 { view.showToast("Error") }
             )
-        view.hideProgress()
     }
 }
