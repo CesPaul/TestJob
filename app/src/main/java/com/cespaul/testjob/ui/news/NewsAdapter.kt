@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.cespaul.testjob.R
 import com.cespaul.testjob.model.News
-import kotlinx.android.synthetic.main.news_row.*
+import com.facebook.drawee.view.SimpleDraweeView
 import kotlinx.android.synthetic.main.news_row.view.*
 
 
@@ -29,7 +29,7 @@ class NewsAdapter(private val context: Context) : RecyclerView.Adapter<NewsAdapt
 
         holderNews.titleTextView.text = news.title
         holderNews.descTextView.text = news.url
-
+        holderNews.imgNewsView.setImageURI(news.thumbnailUrl)
     }
 
     fun updateNews(news: List<News>){
@@ -40,9 +40,11 @@ class NewsAdapter(private val context: Context) : RecyclerView.Adapter<NewsAdapt
     class NewsViewHolder(private val itemLayoutView: View) : RecyclerView.ViewHolder(itemLayoutView) {
         var titleTextView : TextView
         var descTextView : TextView
+        var imgNewsView : SimpleDraweeView
         init {
             titleTextView = itemLayoutView.lblNewsTitle
             descTextView = itemLayoutView.lblNewsDescription
+            imgNewsView = itemLayoutView.imgNews
 
         }
     }

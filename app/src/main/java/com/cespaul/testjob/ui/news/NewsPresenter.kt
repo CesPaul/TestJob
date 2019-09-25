@@ -1,7 +1,6 @@
 package com.cespaul.testjob.ui.news
 
 import com.cespaul.testjob.base.BasePresenter
-import com.cespaul.testjob.base.BaseView
 import com.cespaul.testjob.network.NewsApi
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable

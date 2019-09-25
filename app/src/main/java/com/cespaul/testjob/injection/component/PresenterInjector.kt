@@ -1,13 +1,11 @@
 package com.cespaul.testjob.injection.component
 
-import android.content.Context
 import com.cespaul.testjob.base.BaseView
 import com.cespaul.testjob.injection.module.ContextModule
 import com.cespaul.testjob.injection.module.NetworkModule
 import com.cespaul.testjob.ui.news.NewsPresenter
 import dagger.BindsInstance
 import dagger.Component
-import dagger.Module
 import javax.inject.Singleton
 
 
