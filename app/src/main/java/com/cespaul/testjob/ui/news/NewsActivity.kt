@@ -1,9 +1,12 @@
 package com.cespaul.testjob.ui.news
 
-import android.app.ProgressDialog
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
+import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.Toast
 import com.cespaul.testjob.R
 import com.cespaul.testjob.base.BaseActivity
@@ -13,8 +16,6 @@ import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.activity_news.*
 
 class NewsActivity : BaseActivity<NewsPresenter>(), NewsView {
-
-    lateinit var progressDialog: ProgressDialog
     private val newsAdapter = NewsAdapter(this)
     private val layoutManager = LinearLayoutManager(this)
 
@@ -24,9 +25,10 @@ class NewsActivity : BaseActivity<NewsPresenter>(), NewsView {
         setContentView(R.layout.activity_news)
         newsRecycler.adapter = newsAdapter
         newsRecycler.layoutManager = layoutManager
+        val progressBar = loadBar
+        progressBar.visibility = View.GONE
+
         newsRecycler.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-
-
         presenter.onViewCreated()
     }
 
@@ -45,13 +47,12 @@ class NewsActivity : BaseActivity<NewsPresenter>(), NewsView {
     }
 
     override fun showProgress() {
-        progressDialog = ProgressDialog(this)
-        progressDialog.setTitle("Loading")
-        progressDialog.setCancelable(false)
-        progressDialog.show()
+        val progressBar = loadBar
+        progressBar.visibility = View.VISIBLE
     }
     override fun hideProgress() {
-        progressDialog.dismiss()
+        val progressBar = loadBar
+        progressBar.visibility = View.GONE
     }
 
     override fun instantiatePresenter(): NewsPresenter {

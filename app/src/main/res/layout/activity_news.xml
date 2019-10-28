@@ -8,12 +8,26 @@
         android:layout_height="match_parent">
     <include layout="@layout/toolbar" android:text="@string/app_name"/>
 
+    <LinearLayout
+            android:id="@+id/rootContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar_actionbar"
+            android:gravity="center"
+            android:orientation="vertical">
+
+        <ProgressBar
+                android:id="@+id/loadBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
     <android.support.v7.widget.RecyclerView
             android:id="@+id/newsRecycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/toolbar_actionbar"
-    >
+            android:layout_below="@id/rootContainer">
 
     </android.support.v7.widget.RecyclerView>
 
