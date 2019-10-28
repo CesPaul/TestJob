@@ -14,6 +14,7 @@ import com.cespaul.testjob.model.News
 import com.facebook.drawee.backends.pipeline.Fresco
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.activity_news.*
+import kotlinx.android.synthetic.main.toolbar.*
 
 class NewsActivity : BaseActivity<NewsPresenter>(), NewsView {
     private val newsAdapter = NewsAdapter(this)
@@ -25,9 +26,7 @@ class NewsActivity : BaseActivity<NewsPresenter>(), NewsView {
         setContentView(R.layout.activity_news)
         newsRecycler.adapter = newsAdapter
         newsRecycler.layoutManager = layoutManager
-        val progressBar = loadBar
-        progressBar.visibility = View.GONE
-
+        initToolbar()
         newsRecycler.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         presenter.onViewCreated()
     }
@@ -37,6 +36,12 @@ class NewsActivity : BaseActivity<NewsPresenter>(), NewsView {
         presenter.onViewDestroyed()
     }
 
+    private fun initToolbar() {
+        setSupportActionBar(toolbar_actionbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeButtonEnabled(true)
+        toolbar_actionbar.setNavigationOnClickListener { onBackPressed() }
+    }
 
     override fun updateNews(news: List<News>) {
         newsAdapter.updateNews(news)
