@@ -7,45 +7,48 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.cespaul.testjob.R
-import com.cespaul.testjob.model.News
+import com.cespaul.testjob.model.Article
+import com.cespaul.testjob.model.Articles
 import com.facebook.drawee.view.SimpleDraweeView
 import kotlinx.android.synthetic.main.news_row.view.*
 
 
 class NewsAdapter(private val context: Context) : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>(){
 
-    private var newsList : List<News> = listOf()
+    private var articlesList : List<Article> = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         return NewsViewHolder(LayoutInflater.from(context).inflate(R.layout.news_row, parent, false))
     }
 
     override fun getItemCount() : Int {
-        return newsList.size
+        return articlesList.size
     }
 
     override fun onBindViewHolder(holderNews: NewsViewHolder, position: Int) {
-        val news = newsList.get(position)
+        val articles = articlesList.get(position)
 
-        holderNews.titleTextView.text = news.title
-        holderNews.descTextView.text = news.url
-        holderNews.imgNewsView.setImageURI(news.thumbnailUrl)
+        holderNews.titleTextView.text = articles.title
+        holderNews.descTextView.text = articles.description
+        holderNews.publishedAtTextView.text = articles.publishedAt
+        holderNews.imgNewsView.setImageURI(articles.urlToImage)
     }
 
-    fun updateNews(news: List<News>){
-        this.newsList = news
+    fun updateNews(articleNews: Articles){
+        this.articlesList = articleNews.articles
         notifyDataSetChanged()
     }
 
     class NewsViewHolder(private val itemLayoutView: View) : RecyclerView.ViewHolder(itemLayoutView) {
         var titleTextView : TextView
         var descTextView : TextView
+        var publishedAtTextView : TextView
         var imgNewsView : SimpleDraweeView
         init {
             titleTextView = itemLayoutView.lblNewsTitle
             descTextView = itemLayoutView.lblNewsDescription
+            publishedAtTextView = itemLayoutView.lblPublishedAt
             imgNewsView = itemLayoutView.imgNews
-
         }
     }
 

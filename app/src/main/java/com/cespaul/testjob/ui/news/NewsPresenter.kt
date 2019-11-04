@@ -24,7 +24,7 @@ class NewsPresenter(newsView: NewsView) : BasePresenter<NewsView>(newsView) {
     fun loadNews(){
         view.showProgress()
         subscription = newsApi
-            .getNews()
+            .getNews(1)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .doOnTerminate{ view.hideProgress() }

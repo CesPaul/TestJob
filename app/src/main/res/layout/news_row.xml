@@ -3,8 +3,8 @@
 
     <data>
         <variable
-                name="news"
-                type="com.cespaul.testjob.model.News" />
+                name="articles"
+                type="com.cespaul.testjob.model.Articles" />
     </data>
 
     <LinearLayout
@@ -41,15 +41,15 @@
                     android:layout_marginLeft="8dp" android:text="Description"/>
 
             <TextView
-                    android:id="@+id/lblNewsDate"
-                    android:layout_width="match_parent"
+                    android:id="@+id/lblPublishedAt"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:layout_marginLeft="8dp"
                     android:foregroundGravity="right"
                     android:gravity="right"
-                    android:text="Date"
-                    android:visibility="invisible" />
+                    android:text="Published at"
+                    android:visibility="visible" />
         </LinearLayout>
     </LinearLayout>
 

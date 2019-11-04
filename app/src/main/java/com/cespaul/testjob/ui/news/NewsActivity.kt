@@ -4,13 +4,10 @@ import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.ProgressBar
 import android.widget.Toast
 import com.cespaul.testjob.R
 import com.cespaul.testjob.base.BaseActivity
-import com.cespaul.testjob.model.News
+import com.cespaul.testjob.model.Articles
 import com.facebook.drawee.backends.pipeline.Fresco
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.activity_news.*
@@ -43,8 +40,8 @@ class NewsActivity : BaseActivity<NewsPresenter>(), NewsView {
         toolbar_actionbar.setNavigationOnClickListener { onBackPressed() }
     }
 
-    override fun updateNews(news: List<News>) {
-        newsAdapter.updateNews(news)
+    override fun updateNews(articles: Articles) {
+        newsAdapter.updateNews(articles)
     }
 
     override fun showToast(message : String) {

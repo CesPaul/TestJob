@@ -8,28 +8,25 @@ import dagger.Reusable
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 @Module
-@Suppress("unused")
 object NetworkModule {
-    @Provides
-    @Reusable
-    @JvmStatic
-
-    internal fun provideNewsApi(retrofit: Retrofit): NewsApi{
-        return retrofit.create(NewsApi::class.java)
-    }
 
     @Provides
     @Reusable
     @JvmStatic
-    internal fun provideRetrofitInterface(): Retrofit {
-        return Retrofit.Builder()
+    internal fun provideNewsApi(retrofit: Retrofit): NewsApi =
+        retrofit.create(NewsApi::class.java)
+
+    @Provides
+    @Reusable
+    @JvmStatic
+    internal fun provideRetrofitInterface(): Retrofit =
+        Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
             .build()
-    }
 }
