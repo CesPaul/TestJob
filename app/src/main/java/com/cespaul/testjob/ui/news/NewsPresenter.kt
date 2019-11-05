@@ -11,7 +11,7 @@ class NewsPresenter(newsView: NewsView) : BasePresenter<NewsView>(newsView) {
     @Inject
     lateinit var newsApi: NewsApi
 
-    private var subscription : Disposable? = null
+    private var subscription: Disposable? = null
 
     override fun onViewCreated() {
         loadNews()
@@ -21,13 +21,13 @@ class NewsPresenter(newsView: NewsView) : BasePresenter<NewsView>(newsView) {
         subscription?.dispose()
     }
 
-    fun loadNews(){
+    fun loadNews() {
         view.showProgress()
         subscription = newsApi
             .getNews(1)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
-            .doOnTerminate{ view.hideProgress() }
+            .doOnTerminate { view.hideProgress() }
             .subscribe(
                 { newsList -> view.updateNews(newsList) },
                 { view.showToast("Error") }

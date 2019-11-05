@@ -35,16 +35,13 @@ class NewsActivity : BaseActivity<NewsPresenter>(), NewsView {
 
     private fun initToolbar() {
         setSupportActionBar(toolbar_actionbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setHomeButtonEnabled(true)
-        toolbar_actionbar.setNavigationOnClickListener { onBackPressed() }
     }
 
     override fun updateNews(articles: Articles) {
         newsAdapter.updateNews(articles)
     }
 
-    override fun showToast(message : String) {
+    override fun showToast(message: String) {
         Toasty.error(this, message, Toast.LENGTH_SHORT).show()
     }
 
@@ -52,6 +49,7 @@ class NewsActivity : BaseActivity<NewsPresenter>(), NewsView {
         val progressBar = loadBar
         progressBar.visibility = View.VISIBLE
     }
+
     override fun hideProgress() {
         val progressBar = loadBar
         progressBar.visibility = View.GONE
