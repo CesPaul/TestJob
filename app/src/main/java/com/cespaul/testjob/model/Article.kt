@@ -4,14 +4,15 @@ import com.google.gson.annotations.SerializedName
 
 data class Article(
     @SerializedName("author")
-    val author : String,
+    val author: String,
     @SerializedName("title")
-    val title : String,
+    val title: String,
     @SerializedName("description")
-    val description : String,
+    val description: String,
     @SerializedName("url")
-    val url : String,
+    val url: String,
     @SerializedName("urlToImage")
-    val urlToImage : String,
+    val urlToImage: String,
     @SerializedName("publishedAt")
-    val publishedAt : String)
+    val publishedAt: String
+)

@@ -4,8 +4,8 @@ import com.cespaul.testjob.base.BaseView
 import com.cespaul.testjob.model.Articles
 
 interface NewsView : BaseView {
-    fun updateNews(articles : Articles)
-    fun showToast(message : String)
+    fun updateNews(articles: Articles)
+    fun showToast(message: String)
     fun showProgress()
     fun hideProgress()
 }

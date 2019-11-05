@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TestJob</string>
+    <string name="subtitle">Published: </string>
 </resources>

@@ -6,9 +6,9 @@ import com.cespaul.testjob.injection.module.ContextModule
 import com.cespaul.testjob.injection.module.NetworkModule
 import com.cespaul.testjob.ui.news.NewsPresenter
 
-abstract class BasePresenter<out V: BaseView>(protected val view : V) {
+abstract class BasePresenter<out V : BaseView>(protected val view: V) {
 
-    private val injector : PresenterInjector = DaggerPresenterInjector
+    private val injector: PresenterInjector = DaggerPresenterInjector
         .builder()
         .baseView(view)
         .contextModule(ContextModule)
@@ -19,12 +19,12 @@ abstract class BasePresenter<out V: BaseView>(protected val view : V) {
         inject()
     }
 
-    open fun onViewCreated(){}
+    open fun onViewCreated() {}
 
-    open fun onViewDestroyed(){}
+    open fun onViewDestroyed() {}
 
-    private fun inject(){
-        when (this){
+    private fun inject() {
+        when (this) {
             is NewsPresenter -> injector.inject(this)
         }
     }

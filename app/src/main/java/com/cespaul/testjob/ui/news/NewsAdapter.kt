@@ -38,7 +38,7 @@ class NewsAdapter(private val context: Context) :
         val articles = articlesList.get(position)
         holderNews.titleTextView.text = articles.title
         holderNews.descTextView.text = articles.description
-        holderNews.publishedAtTextView.text = articles.publishedAt
+        holderNews.publishedAtTextView.text = convertDate(articles.publishedAt)
         holderNews.imgNewsView.setImageURI(articles.urlToImage)
     }
 
@@ -62,6 +62,12 @@ class NewsAdapter(private val context: Context) :
         }
     }
 
-
+    fun convertDate(publishedAt: String): String {
+        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
+        val date: Long = simpleDateFormat.parse(publishedAt).time
+        var subtitle = SimpleDateFormat("dd:MM:yyyy hh:mm", Locale.getDefault()).format(Date(date))
+        subtitle = context.getString(R.string.subtitle) + " " + subtitle
+        return subtitle
+    }
 }
 

@@ -10,7 +10,7 @@ import javax.inject.Singleton
 
 
 @Singleton
-@Component(modules = [(ContextModule::class),(NetworkModule::class)])
+@Component(modules = [(ContextModule::class), (NetworkModule::class)])
 
 interface PresenterInjector {
     fun inject(newsPresenter: NewsPresenter)
@@ -19,10 +19,10 @@ interface PresenterInjector {
     interface Builder {
         fun build(): PresenterInjector
 
-        fun networkModule(networkModule: NetworkModule) : Builder
-        fun contextModule(contextModule: ContextModule) : Builder
+        fun networkModule(networkModule: NetworkModule): Builder
+        fun contextModule(contextModule: ContextModule): Builder
 
         @BindsInstance
-        fun baseView(baseView: BaseView) : Builder
+        fun baseView(baseView: BaseView): Builder
     }
 }
