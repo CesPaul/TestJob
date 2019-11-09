@@ -1,11 +1,9 @@
 package com.cespaul.testjob.ui.news
 
 import com.cespaul.testjob.base.BasePresenter
-import com.cespaul.testjob.model.Articles
 import com.cespaul.testjob.network.NewsApi
 import com.cespaul.testjob.repository.NewsRepository
 import com.cespaul.testjob.repository.NewsRepositoryImpl
-import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
@@ -18,21 +16,29 @@ class NewsPresenter(newsView: NewsView) : BasePresenter<NewsView>(newsView) {
     private var subscription: Disposable? = null
 
     override fun onViewCreated() {
-        subscription = loadNewsFromInternet()
-            .doOnTerminate { view.hideProgress() }
-            .subscribe(
-                { newsList -> view.updateNews(newsList) },
-                { view.showToast("Error") }
-            )
+        subscription = loadNewsFromInternet(1)
     }
 
     override fun onViewDestroyed() {
         subscription?.dispose()
     }
 
-    fun loadNewsFromInternet(): Observable<Articles> {
+    fun loadNewsFromInternet(page: Int): Disposable? {
         view.showProgress()
         return repository
-            .getNews(1)
+            .getNews(page)
+            .doOnTerminate { view.hideProgress() }
+            .subscribe(
+                { newsList ->
+                    repository.addNextPage(page, newsList)
+                    view.updateNews(repository.getAllPages())
+                },
+                { view.showToast("Error") }
+            )
+    }
+
+    fun loadNextPage() {
+        if (repository.getLastPageNumber() < 5)
+            loadNewsFromInternet(repository.getLastPageNumber() + 1)
     }
 }

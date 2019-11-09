@@ -23,6 +23,11 @@ class NewsActivity : BaseActivity<NewsPresenter>(), NewsView {
         setContentView(R.layout.activity_news)
         newsRecycler.adapter = newsAdapter
         newsRecycler.layoutManager = layoutManager
+        newsRecycler.addOnScrollListener(
+            OnScrollToBottomListener {
+                presenter.loadNextPage()
+            }
+        )
         initToolbar()
         newsRecycler.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         presenter.onViewCreated()
