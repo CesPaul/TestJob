@@ -15,7 +15,9 @@ class NewsPresenter(newsView: NewsView) : BasePresenter<NewsView>(newsView) {
 
     private var subscription: Disposable? = null
 
+
     override fun onViewCreated() {
+        view.hideErrorMessage()
         subscription = loadNewsFromInternet(1)
     }
 
@@ -24,6 +26,7 @@ class NewsPresenter(newsView: NewsView) : BasePresenter<NewsView>(newsView) {
     }
 
     fun loadNewsFromInternet(page: Int): Disposable? {
+        view.hideErrorMessage()
         view.showProgress()
         return repository
             .getNews(page)
@@ -33,12 +36,15 @@ class NewsPresenter(newsView: NewsView) : BasePresenter<NewsView>(newsView) {
                     repository.addNextPage(page, newsList)
                     view.updateNews(repository.getAllPages())
                 },
-                { view.showToast("Error") }
+                {
+                    view.showErrorMessage()
+                }
             )
     }
 
     fun loadNextPage() {
-        if (repository.getLastPageNumber() < 5)
+        if (repository.getLastPageNumber() < 5) {
             loadNewsFromInternet(repository.getLastPageNumber() + 1)
+        }
     }
 }
