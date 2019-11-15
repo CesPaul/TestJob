@@ -1,9 +1,12 @@
 package com.cespaul.testjob.ui.news
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import android.widget.Toast
+import com.cespaul.testjob.ArticleBrowse
 import com.cespaul.testjob.R
 import com.cespaul.testjob.base.BaseActivity
 import com.cespaul.testjob.model.Articles
@@ -12,7 +15,13 @@ import kotlinx.android.synthetic.main.activity_news.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 class NewsActivity : BaseActivity<NewsPresenter>(), NewsView {
-    private val newsAdapter = NewsAdapter(this)
+
+    private val newsAdapter = NewsAdapter(this) { position, item ->
+        Toast.makeText(this, "Item $position clicked", Toast.LENGTH_LONG).show()
+        intent = Intent(getContext(), ArticleBrowse::class.java)
+        intent.putExtra("url", item.url)
+        startActivity(intent)
+    }
     private val layoutManager = LinearLayoutManager(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {

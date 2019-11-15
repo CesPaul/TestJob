@@ -4,6 +4,7 @@ import com.cespaul.testjob.App
 import com.cespaul.testjob.base.BasePresenter
 import com.cespaul.testjob.data.database.NewsDatabase
 import com.cespaul.testjob.data.network.NewsApi
+import com.cespaul.testjob.model.Article
 import com.cespaul.testjob.repository.NewsRepository
 import com.cespaul.testjob.repository.NewsRepositoryImpl
 import io.reactivex.disposables.Disposable
@@ -18,7 +19,6 @@ class NewsPresenter(newsView: NewsView) : BasePresenter<NewsView>(newsView) {
     var repository: NewsRepository = NewsRepositoryImpl(newsApi, newsDb)
 
     private var subscription: Disposable? = null
-
 
     override fun onViewCreated() {
         view.hideErrorBox()
@@ -63,5 +63,9 @@ class NewsPresenter(newsView: NewsView) : BasePresenter<NewsView>(newsView) {
         if (repository.getLastPageNumber() < 5) {
             loadNews(repository.getLastPageNumber() + 1)
         }
+    }
+
+    fun onBrowseArticle(article: Article) {
+
     }
 }

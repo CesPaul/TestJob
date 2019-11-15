@@ -15,7 +15,10 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class NewsAdapter(private val context: Context) :
+class NewsAdapter(
+    private val context: Context,
+    private val onItemClickListener: (position: Int, item: Article) -> Unit
+) :
     RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
     private var articlesList: List<Article> = listOf()
@@ -35,11 +38,14 @@ class NewsAdapter(private val context: Context) :
     }
 
     override fun onBindViewHolder(holderNews: NewsViewHolder, position: Int) {
-        val articles = articlesList.get(position)
-        holderNews.titleTextView.text = articles.title
-        holderNews.descTextView.text = articles.description
-        holderNews.publishedAtTextView.text = convertDate(articles.publishedAt)
-        holderNews.imgNewsView.setImageURI(articles.urlToImage)
+        val article = articlesList.get(position)
+        holderNews.onItemClickListener = View.OnClickListener {
+            onItemClickListener(position, article)
+        }
+        holderNews.titleTextView.text = article.title
+        holderNews.descTextView.text = article.description
+        holderNews.publishedAtTextView.text = convertDate(article.publishedAt)
+        holderNews.imgNewsView.setImageURI(article.urlToImage)
     }
 
     fun updateNews(articleNews: Articles) {
@@ -47,8 +53,11 @@ class NewsAdapter(private val context: Context) :
         notifyDataSetChanged()
     }
 
-    class NewsViewHolder(private val itemLayoutView: View) :
+    class NewsViewHolder(
+        private val itemLayoutView: View
+    ) :
         RecyclerView.ViewHolder(itemLayoutView) {
+        var onItemClickListener: View.OnClickListener? = null
         var titleTextView: TextView
         var descTextView: TextView
         var publishedAtTextView: TextView
@@ -59,6 +68,9 @@ class NewsAdapter(private val context: Context) :
             descTextView = itemLayoutView.lblNewsDescription
             publishedAtTextView = itemLayoutView.lblPublishedAt
             imgNewsView = itemLayoutView.imgNews
+            itemLayoutView.setOnClickListener {
+                onItemClickListener?.onClick(it)
+            }
         }
     }
 
