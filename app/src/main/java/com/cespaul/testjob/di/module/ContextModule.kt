@@ -1,4 +1,4 @@
-package com.cespaul.testjob.injection.module
+package com.cespaul.testjob.di.module
 
 import android.app.Application
 import android.content.Context

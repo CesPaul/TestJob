@@ -1,4 +1,4 @@
-package com.cespaul.testjob.network
+package com.cespaul.testjob.data.network
 
 import com.cespaul.testjob.model.Articles
 import io.reactivex.Observable

@@ -4,8 +4,9 @@ import com.cespaul.testjob.model.Articles
 import io.reactivex.Observable
 
 interface NewsRepository {
-    fun getNews(page: Int): Observable<Articles>
+    fun updateNews(page: Int): Observable<Articles>
     fun addNextPage(pageNumber: Int, page: Articles)
+    fun getNewsFromDb(): Articles
     fun getAllPages(): Articles
     fun getLastPageNumber(): Int
 }

@@ -1,6 +1,6 @@
-package com.cespaul.testjob.injection.module
+package com.cespaul.testjob.di.module
 
-import com.cespaul.testjob.network.NewsApi
+import com.cespaul.testjob.data.network.NewsApi
 import com.cespaul.testjob.utils.BASE_URL
 import dagger.Module
 import dagger.Provides

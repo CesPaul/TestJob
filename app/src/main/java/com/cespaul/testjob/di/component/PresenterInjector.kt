@@ -1,8 +1,8 @@
-package com.cespaul.testjob.injection.component
+package com.cespaul.testjob.di.component
 
 import com.cespaul.testjob.base.BaseView
-import com.cespaul.testjob.injection.module.ContextModule
-import com.cespaul.testjob.injection.module.NetworkModule
+import com.cespaul.testjob.di.module.ContextModule
+import com.cespaul.testjob.di.module.NetworkModule
 import com.cespaul.testjob.ui.news.NewsPresenter
 import dagger.BindsInstance
 import dagger.Component

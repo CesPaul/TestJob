@@ -26,7 +26,6 @@ class NewsActivity : BaseActivity<NewsPresenter>(), NewsView {
                 presenter.loadNextPage()
             }
         )
-        val retryButton = retryButton
         retryButton.setOnClickListener {
             presenter.loadNextPage()
         }
@@ -48,12 +47,12 @@ class NewsActivity : BaseActivity<NewsPresenter>(), NewsView {
         newsAdapter.updateNews(articles)
     }
 
-    override fun showErrorMessage() {
+    override fun showErrorBox() {
         val errorBox = errorBox
         errorBox.visibility = View.VISIBLE
     }
 
-    override fun hideErrorMessage() {
+    override fun hideErrorBox() {
         val errorBox = errorBox
         errorBox.visibility = View.GONE
     }

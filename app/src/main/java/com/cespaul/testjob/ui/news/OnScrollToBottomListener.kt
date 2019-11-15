@@ -6,8 +6,8 @@ import android.support.v7.widget.RecyclerView
 class OnScrollToBottomListener(
     private val onScrolledToBottom: () -> Unit
 ) : RecyclerView.OnScrollListener() {
-    private var isLoading = true
     private var previousTotal = 0
+
     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
         super.onScrolled(recyclerView, dx, dy)
 
@@ -17,16 +17,12 @@ class OnScrollToBottomListener(
             val totalItemCount = layoutManager.itemCount
             val pastVisibleItems = layoutManager.findFirstVisibleItemPosition()
 
-            if (isLoading) {
-                if (totalItemCount > previousTotal) {
-                    isLoading = false
-                    previousTotal = totalItemCount
-                }
+            if (totalItemCount > previousTotal) {
+                previousTotal = totalItemCount
             }
 
-            if ((!isLoading) && (pastVisibleItems + visibleItemCount >= totalItemCount)) {
+            if (pastVisibleItems + visibleItemCount >= totalItemCount) {
                 onScrolledToBottom.invoke()
-                isLoading = true
             }
         }
     }

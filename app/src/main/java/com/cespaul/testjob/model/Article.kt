@@ -1,18 +1,27 @@
 package com.cespaul.testjob.model
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "article")
 data class Article(
-    @SerializedName("author")
-    val author: String,
+    @PrimaryKey(autoGenerate = true)
+    val id: Int?,
     @SerializedName("title")
-    val title: String,
+    @ColumnInfo(name = "title")
+    val title: String?,
     @SerializedName("description")
-    val description: String,
+    @ColumnInfo(name = "description")
+    val description: String?,
     @SerializedName("url")
-    val url: String,
+    @ColumnInfo(name = "url")
+    val url: String?,
     @SerializedName("urlToImage")
-    val urlToImage: String,
+    @ColumnInfo(name = "urlToImage")
+    val urlToImage: String?,
     @SerializedName("publishedAt")
+    @ColumnInfo(name = "publishedAt")
     val publishedAt: String
 )
