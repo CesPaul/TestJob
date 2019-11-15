@@ -3,6 +3,7 @@ package com.cespaul.testjob.repository
 import com.cespaul.testjob.data.database.NewsDatabase
 import com.cespaul.testjob.data.network.NewsApi
 import com.cespaul.testjob.model.Articles
+import com.cespaul.testjob.utils.PAGE_SIZE
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -16,7 +17,7 @@ class NewsRepositoryImpl(private val newsApi: NewsApi, private val newsDb: NewsD
 
     override fun updateNews(page: Int): Observable<Articles> {
         return newsApi
-            .getNews(page)
+            .getNews(page, PAGE_SIZE)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
     }
