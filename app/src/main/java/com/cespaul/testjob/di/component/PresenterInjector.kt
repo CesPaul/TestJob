@@ -2,6 +2,7 @@ package com.cespaul.testjob.di.component
 
 import com.cespaul.testjob.base.BaseView
 import com.cespaul.testjob.di.module.ContextModule
+import com.cespaul.testjob.di.module.DatabaseModule
 import com.cespaul.testjob.di.module.NetworkModule
 import com.cespaul.testjob.ui.news.NewsPresenter
 import dagger.BindsInstance
@@ -13,7 +14,13 @@ import javax.inject.Singleton
  *
  */
 @Singleton
-@Component(modules = [(ContextModule::class), (NetworkModule::class)])
+@Component(
+    modules = [
+        (ContextModule::class),
+        (NetworkModule::class),
+        (DatabaseModule::class)
+    ]
+)
 
 /**
  * Управление внедрением зависимостей.
@@ -55,6 +62,14 @@ interface PresenterInjector {
          * @return Builder.
          */
         fun contextModule(contextModule: ContextModule): Builder
+
+        /**
+         * Модуль для базы данных.
+         *
+         * @param databaseModule Экземпляр базы данных.
+         * @return Builder.
+         */
+        fun databaseModule(databaseModule: DatabaseModule): Builder
 
         /**
          * Привязка к конкретной реализации базовой View.

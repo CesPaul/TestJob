@@ -9,7 +9,6 @@ import com.cespaul.testjob.R
 import com.cespaul.testjob.base.BaseActivity
 import com.cespaul.testjob.model.Articles
 import com.cespaul.testjob.ui.ArticleBrowse
-import com.facebook.drawee.backends.pipeline.Fresco
 import kotlinx.android.synthetic.main.activity_news.*
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -19,7 +18,7 @@ import kotlinx.android.synthetic.main.toolbar.*
  */
 class NewsActivity : BaseActivity<NewsPresenter>(), NewsView {
 
-    private val newsAdapter = NewsAdapter(this) { position, item ->
+    private val newsAdapter = NewsAdapter(this) { _, item ->
         intent = Intent(getContext(), ArticleBrowse::class.java)
         intent.putExtra("url", item.url)
         startActivity(intent)
@@ -28,7 +27,6 @@ class NewsActivity : BaseActivity<NewsPresenter>(), NewsView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Fresco.initialize(this)
         setContentView(R.layout.activity_news)
         newsRecycler.adapter = newsAdapter
         newsRecycler.layoutManager = layoutManager

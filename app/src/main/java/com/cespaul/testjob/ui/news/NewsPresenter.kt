@@ -1,6 +1,5 @@
 package com.cespaul.testjob.ui.news
 
-import com.cespaul.testjob.App
 import com.cespaul.testjob.base.BasePresenter
 import com.cespaul.testjob.data.database.NewsDatabase
 import com.cespaul.testjob.data.network.NewsApi
@@ -23,7 +22,8 @@ class NewsPresenter(newsView: NewsView) : BasePresenter<NewsView>(newsView) {
     private var storageMode = StorageMode.API
     @Inject
     lateinit var newsApi: NewsApi
-    private var newsDb: NewsDatabase = App.instance.getDatabase()
+    @Inject
+    lateinit var newsDb: NewsDatabase
     private var repository: NewsRepository = NewsRepositoryImpl(newsApi, newsDb)
 
     private var subscription: Disposable? = null
