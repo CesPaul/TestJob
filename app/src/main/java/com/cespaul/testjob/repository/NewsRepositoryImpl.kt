@@ -9,10 +9,22 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.util.*
 
+/**
+ * Реализация репозитория новстей.
+ *
+ * @property newsApi API для новостей.
+ * @property newsDb База данных для кэшированных новостей.
+ */
 class NewsRepositoryImpl(private val newsApi: NewsApi, private val newsDb: NewsDatabase) :
     NewsRepository {
 
+    /**
+     * Номер последней загруженной страницы с новостями.
+     */
     private var lastPageNumber: Int = 0
+    /**
+     * Хранит список всех загруженных новостей.
+     */
     private var currentArticles: Articles = Articles(ArrayList())
 
     override fun updateNews(page: Int): Observable<Articles> {

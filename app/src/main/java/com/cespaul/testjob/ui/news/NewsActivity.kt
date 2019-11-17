@@ -13,6 +13,10 @@ import com.facebook.drawee.backends.pipeline.Fresco
 import kotlinx.android.synthetic.main.activity_news.*
 import kotlinx.android.synthetic.main.toolbar.*
 
+/**
+ * Отображает новостную ленту с возможность открытия статей.
+ *
+ */
 class NewsActivity : BaseActivity<NewsPresenter>(), NewsView {
 
     private val newsAdapter = NewsAdapter(this) { position, item ->

@@ -14,12 +14,23 @@ import retrofit2.converter.gson.GsonConverterFactory
 @Module
 object NetworkModule {
 
+    /**
+     * Для предоставления API.
+     *
+     * @param retrofit Экземпляр Retrofit.
+     * @return Реализация API.
+     */
     @Provides
     @Reusable
     @JvmStatic
     internal fun provideNewsApi(retrofit: Retrofit): NewsApi =
         retrofit.create(NewsApi::class.java)
 
+    /**
+     * Для предоставления интерфейса дял Retrofit.
+     *
+     * @return Retrofit.
+     */
     @Provides
     @Reusable
     @JvmStatic

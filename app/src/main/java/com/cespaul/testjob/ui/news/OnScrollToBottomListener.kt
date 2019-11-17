@@ -4,6 +4,11 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.cespaul.testjob.utils.PREFETCH_SIZE
 
+/**
+ * Необходим для отслеживания прокрутки к концу списка видимых новостей.
+ *
+ * @property onScrolledToBottom Выполняет вызов метода загрузки новостей.
+ */
 class OnScrollToBottomListener(
     private val onScrolledToBottom: () -> Unit
 ) : RecyclerView.OnScrollListener() {
@@ -18,10 +23,15 @@ class OnScrollToBottomListener(
             val totalItemCount = layoutManager.itemCount
             val pastVisibleItems = layoutManager.findFirstVisibleItemPosition()
 
+            // Вычисление предельного элемента страницы.
             if (totalItemCount > previousTotal) {
                 previousTotal = totalItemCount
             }
 
+            /**
+             * Вызов загрузки в случае достижения предельного количества элементов
+             * с учётом размера префетчинга.
+             */
             if (pastVisibleItems + visibleItemCount >= totalItemCount - PREFETCH_SIZE) {
                 onScrolledToBottom.invoke()
             }

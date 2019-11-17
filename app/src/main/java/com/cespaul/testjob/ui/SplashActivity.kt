@@ -7,6 +7,10 @@ import com.cespaul.testjob.R
 import com.cespaul.testjob.ui.news.NewsActivity
 
 
+/**
+ * Для отображения во время загруки приложения.
+ *
+ */
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

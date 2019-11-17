@@ -4,6 +4,10 @@ import android.app.Application
 import androidx.room.Room
 import com.cespaul.testjob.data.database.NewsDatabase
 
+/**
+ * Класс для создания и инициализации базы данных.
+ *
+ */
 class App : Application() {
 
     companion object {
@@ -25,6 +29,11 @@ class App : Application() {
             .build()
     }
 
+    /**
+     * Получение базы данных.
+     *
+     * @return Готовая база данных.
+     */
     fun getDatabase(): NewsDatabase {
         return database
     }

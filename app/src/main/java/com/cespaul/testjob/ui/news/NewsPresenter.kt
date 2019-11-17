@@ -10,6 +10,14 @@ import com.cespaul.testjob.utils.API_KEY_MAX_NEWS_NUMBER_LIMIT
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
+/**
+ *  Отвечает за логику работы и взыаимодействия.
+ *
+ * @constructor
+ *
+ *
+ * @param newsView Экземпляр новостной View.
+ */
 class NewsPresenter(newsView: NewsView) : BasePresenter<NewsView>(newsView) {
     private var isLoading: Boolean = false
     private var storageMode = StorageMode.API
@@ -21,7 +29,7 @@ class NewsPresenter(newsView: NewsView) : BasePresenter<NewsView>(newsView) {
     private var subscription: Disposable? = null
 
     override fun onViewCreated() {
-        view.hideErrorBox()
+        view.hideErrorBox() // Начальное сокрытие сообщения.
         subscription = loadNews(1)
     }
 
@@ -29,9 +37,19 @@ class NewsPresenter(newsView: NewsView) : BasePresenter<NewsView>(newsView) {
         subscription?.dispose()
     }
 
+    /**
+     * Загрузка новостей.
+     * Показывает индикацию загрузки.
+     * В случае успеха загрузки страницы с новостями - кэширует их в память.
+     * В случае ошибки загрузки страницы - загружает новости из базы данных
+     *  и предлагает повторить попытку загрузки.
+     *
+     * @param page Номер загружаемой страницы из API.
+     * @return Observable для страницы новостей.
+     */
     private fun loadNews(page: Int): Disposable? {
         isLoading = true
-        view.hideErrorBox()
+        view.hideErrorBox() // Скрытие сообщения об ошибке из кода в начале.
         view.showProgress()
         return repository
             .updateNews(page)
@@ -50,6 +68,11 @@ class NewsPresenter(newsView: NewsView) : BasePresenter<NewsView>(newsView) {
             })
     }
 
+    /**
+     * Выполняет загрузка следующей страницы.
+     * Проверяет предел страниц.
+     *
+     */
     fun loadNextPage() {
         if (isLoading) {
             return
