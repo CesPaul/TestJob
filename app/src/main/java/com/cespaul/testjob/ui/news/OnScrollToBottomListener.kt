@@ -2,6 +2,7 @@ package com.cespaul.testjob.ui.news
 
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import com.cespaul.testjob.utils.PREFETCH_SIZE
 
 class OnScrollToBottomListener(
     private val onScrolledToBottom: () -> Unit
@@ -21,7 +22,7 @@ class OnScrollToBottomListener(
                 previousTotal = totalItemCount
             }
 
-            if (pastVisibleItems + visibleItemCount >= totalItemCount) {
+            if (pastVisibleItems + visibleItemCount >= totalItemCount - PREFETCH_SIZE) {
                 onScrolledToBottom.invoke()
             }
         }

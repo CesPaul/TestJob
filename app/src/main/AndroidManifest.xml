@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ArticleBrowse"
+            android:name=".ui.ArticleBrowse"
             android:configChanges="orientation|screenSize"></activity>
         <activity
             android:name=".ui.SplashActivity"

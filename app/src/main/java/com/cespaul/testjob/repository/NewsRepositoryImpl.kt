@@ -17,7 +17,7 @@ class NewsRepositoryImpl(private val newsApi: NewsApi, private val newsDb: NewsD
 
     override fun updateNews(page: Int): Observable<Articles> {
         return newsApi
-            .getNews(page, PAGE_SIZE)
+            .getNews(PAGE_SIZE, page)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
     }

@@ -1,8 +1,9 @@
-package com.cespaul.testjob
+package com.cespaul.testjob.ui
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.webkit.WebViewClient
+import com.cespaul.testjob.R
 import kotlinx.android.synthetic.main.activity_article_browse.*
 import kotlinx.android.synthetic.main.toolbar.*
 

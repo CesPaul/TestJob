@@ -45,7 +45,10 @@ class NewsAdapter(
         holderNews.titleTextView.text = article.title
         holderNews.descTextView.text = article.description
         holderNews.publishedAtTextView.text = convertDate(article.publishedAt)
-        holderNews.imgNewsView.setImageURI(article.urlToImage)
+        when (article.urlToImage) {
+            null -> holderNews.imgNewsView.setActualImageResource(R.drawable.noimage)
+            else -> holderNews.imgNewsView.setImageURI(article.urlToImage)
+        }
     }
 
     fun updateNews(articleNews: Articles) {

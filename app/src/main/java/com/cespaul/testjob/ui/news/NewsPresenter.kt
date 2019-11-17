@@ -36,24 +36,18 @@ class NewsPresenter(newsView: NewsView) : BasePresenter<NewsView>(newsView) {
         return repository
             .updateNews(page)
             .doOnTerminate { view.hideProgress() }
-            .subscribe(
-                { newsList ->
-                    storageMode = StorageMode.API
-                    repository.addNextPage(page, newsList)
-                    view.updateNews(repository.getAllPages())
-                    isLoading = false
-                },
-                {
-                    view.hideProgress()
-                    isLoading = false
-                    /*if (storageMode == StorageMode.DATABASE) {
-                        return@subscribe
-                    }*/
-                    storageMode = StorageMode.DATABASE
-                    view.showErrorBox()
-                    view.updateNews(repository.getNewsFromDb())
-                }
-            )
+            .subscribe({ newsList ->
+                storageMode = StorageMode.API
+                repository.addNextPage(page, newsList)
+                view.updateNews(repository.getAllPages())
+                isLoading = false
+            }, {
+                view.hideProgress()
+                isLoading = false
+                storageMode = StorageMode.DATABASE
+                view.showErrorBox()
+                view.updateNews(repository.getNewsFromDb())
+            })
     }
 
     fun loadNextPage() {
