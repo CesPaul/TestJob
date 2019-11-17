@@ -15,8 +15,8 @@ class NewsPresenter(newsView: NewsView) : BasePresenter<NewsView>(newsView) {
     private var storageMode = StorageMode.API
     @Inject
     lateinit var newsApi: NewsApi
-    var newsDb: NewsDatabase = App.instance.getDatabase()
-    var repository: NewsRepository = NewsRepositoryImpl(newsApi, newsDb)
+    private var newsDb: NewsDatabase = App.instance.getDatabase()
+    private var repository: NewsRepository = NewsRepositoryImpl(newsApi, newsDb)
 
     private var subscription: Disposable? = null
 
@@ -29,7 +29,7 @@ class NewsPresenter(newsView: NewsView) : BasePresenter<NewsView>(newsView) {
         subscription?.dispose()
     }
 
-    fun loadNews(page: Int): Disposable? {
+    private fun loadNews(page: Int): Disposable? {
         isLoading = true
         view.hideErrorBox()
         view.showProgress()

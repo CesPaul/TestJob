@@ -4,6 +4,8 @@
     <string name="error_connect">Произошла ошибка загрузки данных.</string>
     <string name="retry_load_button">Повторить попытку</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title">Title</string>
+    <string name="publishedAt">Published at</string>
+    <string name="description">Description</string>
+
 </resources>

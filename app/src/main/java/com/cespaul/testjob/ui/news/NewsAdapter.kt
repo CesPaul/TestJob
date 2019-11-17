@@ -37,7 +37,7 @@ class NewsAdapter(
     }
 
     override fun onBindViewHolder(holderNews: NewsViewHolder, position: Int) {
-        val article = articlesList.get(position)
+        val article = articlesList[position]
         holderNews.onItemClickListener = View.OnClickListener {
             onItemClickListener(position, article)
         }
@@ -56,27 +56,23 @@ class NewsAdapter(
     }
 
     class NewsViewHolder(
-        private val itemLayoutView: View
+        itemLayoutView: View
     ) :
         RecyclerView.ViewHolder(itemLayoutView) {
         var onItemClickListener: View.OnClickListener? = null
-        var titleTextView: TextView
-        var descTextView: TextView
-        var publishedAtTextView: TextView
-        var imgNewsView: SimpleDraweeView
+        var titleTextView: TextView = itemLayoutView.lblNewsTitle
+        var descTextView: TextView = itemLayoutView.lblNewsDescription
+        var publishedAtTextView: TextView = itemLayoutView.lblPublishedAt
+        var imgNewsView: SimpleDraweeView = itemLayoutView.imgNews
 
         init {
-            titleTextView = itemLayoutView.lblNewsTitle
-            descTextView = itemLayoutView.lblNewsDescription
-            publishedAtTextView = itemLayoutView.lblPublishedAt
-            imgNewsView = itemLayoutView.imgNews
             itemLayoutView.setOnClickListener {
                 onItemClickListener?.onClick(it)
             }
         }
     }
 
-    fun convertDate(publishedAt: String): String {
+    private fun convertDate(publishedAt: String): String {
         val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
         val date: Long = simpleDateFormat.parse(publishedAt).time
         var subtitle = SimpleDateFormat("dd:MM:yyyy hh:mm", Locale.getDefault()).format(Date(date))
