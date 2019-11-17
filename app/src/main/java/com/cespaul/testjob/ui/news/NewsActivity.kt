@@ -28,6 +28,7 @@ class NewsActivity : BaseActivity<NewsPresenter>(), NewsView {
         setContentView(R.layout.activity_news)
         newsRecycler.adapter = newsAdapter
         newsRecycler.layoutManager = layoutManager
+
         newsRecycler.addOnScrollListener(
             OnScrollToBottomListener {
                 presenter.loadNextPage()
@@ -36,7 +37,8 @@ class NewsActivity : BaseActivity<NewsPresenter>(), NewsView {
         retryButton.setOnClickListener {
             presenter.loadNextPage()
         }
-        initToolbar()
+
+        setSupportActionBar(toolbar_actionbar)
         newsRecycler.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         presenter.onViewCreated()
     }
@@ -44,10 +46,6 @@ class NewsActivity : BaseActivity<NewsPresenter>(), NewsView {
     override fun onDestroy() {
         super.onDestroy()
         presenter.onViewDestroyed()
-    }
-
-    private fun initToolbar() {
-        setSupportActionBar(toolbar_actionbar)
     }
 
     override fun updateNews(articles: Articles) {

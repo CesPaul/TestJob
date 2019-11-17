@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:scaleType="centerCrop"
             fresco:viewAspectRatio="1.6"
-            android:background="@drawable/noimage" />
+            fresco:placeholderImage="@drawable/noimage" />
 
         <LinearLayout
             android:layout_width="match_parent"

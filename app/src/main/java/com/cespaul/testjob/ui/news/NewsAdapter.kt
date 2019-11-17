@@ -14,7 +14,6 @@ import kotlinx.android.synthetic.main.news_row.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-
 class NewsAdapter(
     private val context: Context,
     private val onItemClickListener: (position: Int, item: Article) -> Unit
