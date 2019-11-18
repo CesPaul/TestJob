@@ -16,7 +16,7 @@ object DatabaseModule {
     /**
      * Создание базы данных и предоставление к ней доступа.
      *
-     * @param context Контекст
+     * @param context Контекст.
      * @return Собранная база данных.
      */
     @Provides

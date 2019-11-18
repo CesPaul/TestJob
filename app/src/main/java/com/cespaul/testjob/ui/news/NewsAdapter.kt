@@ -14,6 +14,12 @@ import kotlinx.android.synthetic.main.news_row.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * Ответственнен за помещение новостей в RecyclerView.
+ *
+ * @property context Контекст.
+ * @property onItemClickListener Отслеживание нажатия на элемент списка новостей.
+ */
 class NewsAdapter(
     private val context: Context,
     private val onItemClickListener: (position: Int, item: Article) -> Unit
@@ -50,6 +56,11 @@ class NewsAdapter(
         }
     }
 
+    /**
+     * Обновляет список новостей на экране.
+     *
+     * @param articleNews Список новостей.
+     */
     fun updateNews(articleNews: Articles) {
         this.articlesList = articleNews.articles
         notifyDataSetChanged()
@@ -72,6 +83,12 @@ class NewsAdapter(
         }
     }
 
+    /**
+     * Преобразование даты и времени публикации новости в другой формат с подписью.
+     *
+     * @param publishedAt Дата и время публикации.
+     * @return Строка с подписью и датой и временем по требуемому формату.
+     */
     private fun convertDate(publishedAt: String): String {
         val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
         val date: Long = simpleDateFormat.parse(publishedAt).time
