@@ -1,6 +1,7 @@
 package com.cespaul.testjob.ui.news
 
 import android.content.Context
+import android.support.v4.widget.CircularProgressDrawable
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -50,10 +51,7 @@ class NewsAdapter(
         holderNews.titleTextView.text = article.title
         holderNews.descTextView.text = article.description
         holderNews.publishedAtTextView.text = convertDate(article.publishedAt)
-        when (article.urlToImage) {
-            null -> holderNews.imgNewsView.setActualImageResource(R.drawable.noimage)
-            else -> holderNews.imgNewsView.setImageURI(article.urlToImage)
-        }
+        holderNews.imgNewsView.setImageURI(article.urlToImage)
     }
 
     /**
@@ -77,6 +75,10 @@ class NewsAdapter(
         var imgNewsView: SimpleDraweeView = itemLayoutView.imgNews
 
         init {
+            val drawable = CircularProgressDrawable(itemLayoutView.context)
+            drawable.setStyle(100)
+            drawable.centerRadius = 48.toFloat()
+            imgNewsView.hierarchy.setProgressBarImage(drawable)
             itemLayoutView.setOnClickListener {
                 onItemClickListener?.onClick(it)
             }
