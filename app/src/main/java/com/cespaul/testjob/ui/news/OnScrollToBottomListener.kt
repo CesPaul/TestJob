@@ -1,7 +1,7 @@
 package com.cespaul.testjob.ui.news
 
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.cespaul.testjob.utils.PREFETCH_SIZE
 
 /**

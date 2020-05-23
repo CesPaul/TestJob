@@ -1,12 +1,14 @@
 package com.cespaul.testjob.ui.news
 
+import android.content.ContentValues.TAG
 import android.content.Context
-import android.support.v4.widget.CircularProgressDrawable
-import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.cespaul.testjob.R
 import com.cespaul.testjob.model.Article
 import com.cespaul.testjob.model.Articles
@@ -14,6 +16,7 @@ import com.facebook.drawee.view.SimpleDraweeView
 import kotlinx.android.synthetic.main.news_row.view.*
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 /**
  * Ответственнен за помещение новостей в RecyclerView.
@@ -52,6 +55,7 @@ class NewsAdapter(
         holderNews.descTextView.text = article.description
         holderNews.publishedAtTextView.text = convertDate(article.publishedAt)
         holderNews.imgNewsView.setImageURI(article.urlToImage)
+        Log.e(TAG, "URI of Image" + article.urlToImage)
     }
 
     /**
@@ -76,7 +80,7 @@ class NewsAdapter(
 
         init {
             val drawable = CircularProgressDrawable(itemLayoutView.context)
-            drawable.setStyle(100)
+            drawable.setStyle(CircularProgressDrawable.DEFAULT)
             drawable.centerRadius = 48.toFloat()
             imgNewsView.hierarchy.setProgressBarImage(drawable)
             itemLayoutView.setOnClickListener {
@@ -94,7 +98,7 @@ class NewsAdapter(
     private fun convertDate(publishedAt: String): String {
         val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
         val date: Long = simpleDateFormat.parse(publishedAt).time
-        var subtitle = SimpleDateFormat("dd:MM:yyyy hh:mm", Locale.getDefault()).format(Date(date))
+        var subtitle = SimpleDateFormat("dd.MM.yyyy hh:mm", Locale.getDefault()).format(Date(date))
         subtitle = context.getString(R.string.subtitle) + " " + subtitle
         return subtitle
     }

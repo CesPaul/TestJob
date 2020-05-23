@@ -2,9 +2,9 @@ package com.cespaul.testjob.ui.news
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.cespaul.testjob.R
 import com.cespaul.testjob.base.BaseActivity
 import com.cespaul.testjob.model.Articles
