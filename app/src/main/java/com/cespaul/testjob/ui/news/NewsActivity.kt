@@ -39,7 +39,7 @@ class NewsActivity : BaseActivity<NewsPresenter>(), NewsView {
             presenter.loadNextPage()
         }
 
-        setSupportActionBar(toolbar_actionbar)
+        toolbar.setTitle(R.string.app_name)
         newsRecycler.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         presenter.onViewCreated()
     }

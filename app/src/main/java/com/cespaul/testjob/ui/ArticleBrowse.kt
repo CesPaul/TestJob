@@ -17,9 +17,9 @@ class ArticleBrowse : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_article_browse)
-        setSupportActionBar(toolbar_actionbar)
+        setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        toolbar_actionbar.setNavigationOnClickListener { onBackPressed() }
+        toolbar.setNavigationOnClickListener { onBackPressed() }
 
         val url = intent.getStringExtra("url")
 
