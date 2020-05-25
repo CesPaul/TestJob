@@ -7,6 +7,7 @@ import com.cespaul.testjob.R
 import kotlinx.android.synthetic.main.activity_article_browse.*
 import kotlinx.android.synthetic.main.toolbar.*
 
+
 /**
  * Отображает браузер с открытой новостной статьёй.
  * Сюда приходит url новостной статьи.
@@ -17,8 +18,8 @@ class ArticleBrowse : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_article_browse)
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toolbar.setTitle(R.string.app_name)
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
         toolbar.setNavigationOnClickListener { onBackPressed() }
 
         val url = intent.getStringExtra("url")

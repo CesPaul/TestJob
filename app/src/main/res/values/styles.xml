@@ -13,13 +13,11 @@
         <item name ="android:windowBackground"> @drawable/splash_screen_background</item>
     </style>
 
-    <style name="AppTheme.Base.Toolbar" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    <style name="Toolbar">
         <item name="android:background">@color/colorPrimary</item>
-        <item name="android:textColorPrimary">@android:color/holo_blue_light</item>
-        <item name="actionMenuTextColor">@android:color/holo_green_light</item>
     </style>
 
-    <style name="AppTheme.Base.Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+    <style name="AppTheme.Base.Toolbar.TitleText" parent="">
         <item name="android:textSize">21sp</item>
         <item name="android:textStyle">italic</item>
     </style>
@@ -27,7 +25,7 @@
     <style name="AppTheme.Base.Title.Text" parent="android:Widget.TextView">
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textColor">@color/colorTextDark</item>
     </style>
 
     <style name="SelectableItemTheme">
